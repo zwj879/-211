@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS四种输出方式 - 教师演示</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFFBF5;
+            font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #C23A30, #E85D4A);
+            color: white;
+            text-align: center;
+            padding: 40px 0 35px;
+        }
+        .demo-header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+        .demo-header .badge {
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-weight: normal;
+        }
+
+        .output-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            .output-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .output-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .output-card {
+            background: white;
+            border: 1px solid #E8D5C4;
+            border-radius: 12px;
+            padding: 25px 18px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .output-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .output-card h5 {
+            color: #8B4513;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .output-card .desc {
+            color: #8D6E63;
+            font-size: 0.82rem;
+            margin-bottom: 15px;
+            min-height: 38px;
+        }
+        .output-card .code-hint {
+            background: #FDF9F5;
+            border: 1px dashed #E8D5C4;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-family: "Courier New", monospace;
+        }
+        .output-card button {
+            padding: 10px 28px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .output-card button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .btn-alert   { background: #E67E22; }
+        .btn-console { background: #5D6D7E; }
+        .btn-write   { background: #27AE60; }
+        .btn-inner   { background: #8E44AD; }
+
+        .output-card .result-box {
+            background: #FDF9F5;
+            border: 1px dashed #E8D5C4;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 12px;
+            min-height: 36px;
+            font-size: 0.85rem;
+            color: #5D4037;
+        }
+
+        .summary-box {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid #E8D5C4;
+            border-radius: 12px;
+            padding: 25px 30px;
+        }
+        .summary-box h4 {
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+        .summary-box table {
+            font-size: 0.9rem;
+        }
+        .summary-box table th {
+            background: #FFFBF5;
+            color: #8B4513;
+        }
+        .summary-box .star {
+            color: #C23A30;
+            font-weight: bold;
+        }
+
+        .step-arrow {
+            text-align: center;
+            color: #C23A30;
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== 头部 ========== -->
+    <div class="demo-header">
+        <h1>JavaScript 四种输出方式</h1>
+        <span class="badge">教师演示 · 观察每种方式的效果</span>
+    </div>
+
+    <div class="container py-5">
+
+        <!-- ========== 核心流程提示 ========== -->
+        <div style="max-width:1000px;margin:0 auto 20px;text-align:center;">
+            <p style="color:#8D6E63;">
+                JS做事三步流程：
+                <span style="color:#C23A30;font-weight:bold;">① 找到元素</span> →
+                <span style="color:#C23A30;font-weight:bold;">② 绑定事件</span> →
+                <span style="color:#C23A30;font-weight:bold;">③ 执行输出</span>
+            </p>
+        </div>
+
+        <!-- ========== 四张演示卡片 ========== -->
+        <div class="output-grid">
+
+            <!-- ① alert -->
+            <div class="output-card">
+                <div class="icon">🔔</div>
+                <h5>① alert() 弹窗</h5>
+                <p class="desc">弹出提示窗口<br>必须点“确定”才能继续</p>
+                <div class="code-hint">alert('消息内容')</div>
+                <button class="btn-alert" id="btnAlert">点击测试</button>
+            </div>
+
+            <!-- ② console.log -->
+            <div class="output-card">
+                <div class="icon">🖥️</div>
+                <h5>② console.log() 控制台</h5>
+                <p class="desc">输出到浏览器控制台<br>按 <b>F12</b> 才能看到</p>
+                <div class="code-hint">console.log('消息内容')</div>
+                <button class="btn-console" id="btnConsole">点击测试</button>
+            </div>
+
+            <!-- ③ document.write -->
+            <div class="output-card">
+                <div class="icon">📄</div>
+                <h5>③ document.write()</h5>
+                <p class="desc">直接写到页面上<br>⚠️ <b>会清空整个页面</b></p>
+                <div class="code-hint">document.write('内容')</div>
+                <button class="btn-write" id="btnWrite">点击测试</button>
+            </div>
+
+            <!-- ④ innerHTML -->
+            <div class="output-card">
+                <div class="icon">📝</div>
+                <h5>④ innerHTML</h5>
+                <p class="desc">写到指定元素里面<br>✅ <b>最常用</b></p>
+                <div class="code-hint">元素.innerHTML = '内容'</div>
+                <button class="btn-inner" id="btnInner">点击测试</button>
+                <div class="result-box" id="innerResult">这里会显示结果……</div>
+            </div>
+
+        </div>
+
+        <!-- ========== 总结表格 ========== -->
+        <div class="summary-box mt-5">
+            <h4>📋 四种方式对比总结</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>方式</th>
+                            <th>写什么代码？</th>
+                            <th>在哪里看到？</th>
+                            <th>特点</th>
+                            <th>推荐</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>alert()</b></td>
+                            <td><code>alert('消息')</code></td>
+                            <td>弹出小窗口</td>
+                            <td>强制看，会卡住</td>
+                            <td>⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><b>console.log()</b></td>
+                            <td><code>console.log('消息')</code></td>
+                            <td>F12 控制台</td>
+                            <td>用户看不到，调试用</td>
+                            <td>⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><b>document.write()</b></td>
+                            <td><code>document.write('消息')</code></td>
+                            <td>页面本体</td>
+                            <td>⚠️ 会清空原有内容</td>
+                            <td>⭐</td>
+                        </tr>
+                        <tr>
+                            <td><b>innerHTML</b></td>
+                            <td><code>元素.innerHTML = '消息'</code></td>
+                            <td>指定元素内</td>
+                            <td>✅ 精准，不影响其他</td>
+                            <td><span class="star">⭐⭐⭐⭐⭐</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========== JS代码（完整版，教师演示用） ========== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ① alert() 弹窗
+            let btnAlert = document.querySelector('#btnAlert');
+            btnAlert.addEventListener('click', function() {
+                alert('欢迎了解蜀绣非遗文化！');
+            });
+
+            // ② console.log() 控制台
+            let btnConsole = document.querySelector('#btnConsole');
+            btnConsole.addEventListener('click', function() {
+                console.log('蜀绣是中国四大名绣之一');
+                console.log('这条消息在控制台里，按F12查看');
+            });
+
+            // ③ document.write() 页面写入
+            let btnWrite = document.querySelector('#btnWrite');
+            btnWrite.addEventListener('click', function() {
+                let ok = confirm('⚠️ 会清空整个页面，确定测试吗？');
+                if (ok) {
+                    document.write('<h2 style="text-align:center;color:#C23A30;margin-top:150px;">页面被 document.write 重写了</h2>');
+                    document.write('<p style="text-align:center;">刷新页面即可恢复</p>');
+                }
+            });
+
+            // ④ innerHTML 修改元素内容
+            let btnInner = document.querySelector('#btnInner');
+            let innerResult = document.querySelector('#innerResult');
+            btnInner.addEventListener('click', function() {
+                innerResult.innerHTML = '✅ <b>蜀绣</b>，首批国家级非物质文化遗产！';
+                innerResult.style.color = '#2E7D32';
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

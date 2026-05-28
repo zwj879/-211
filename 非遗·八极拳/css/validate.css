@@ -1,0 +1,10 @@
+/* 移动端导航栏尺寸适配 */
+@media (max-width: 768px) {
+    #navbar-placeholder {
+        max-height: 70px !important; /* 匹配about.html移动端高度 */
+    }
+    #navbar-placeholder .navbar {
+        padding: 0.25rem 1rem !important;
+    }
+    
+}

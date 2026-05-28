@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八极拳·非遗武学 | 永劫无间风格</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入永劫无间风格字体（适配国风武侠） -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 以 about.html 为例，在页面主体容器添加style -->
+<div class="container" style="padding-top: 70px;">
+  <!-- 关于我们的页面内容 -->
+</div>
+    <style>
+        /* 全局样式重置（匹配about.html） */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif; /* 匹配about.html字体 */
+            background-color: #0c0a09; /* 永劫无间暗黑国风底色 */
+            color: #f5f0e8; /* 浅米白主文本色 */
+            background-image: url('https://picsum.photos/id/1071/1920/1080'); /* 永劫无间国风纹理底图 */
+            background-attachment: fixed;
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        /* 自定义颜色体系（匹配about.html） */
+        .text-danger {
+            color: #d4380d !important; /* 永劫无间赤焰红（替代原中国红） */
+        }
+
+        .bg-light {
+            background-color: rgba(26, 24, 22, 0.85) !important; /* 半透暗黑浅背景 */
+        }
+
+        /* 标题样式（永劫无间国风） */
+        .section-title {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 50px;
+            font-family: 'Ma Shan Zheng', cursive; /* 毛笔字体强化国风 */
+            font-size: 2.5rem;
+            color: #f5f0e8;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #d4380d, transparent); /* 渐变红分隔线 */
+            border-radius: 2px;
+        }
+
+        /* 卡片样式（永劫无间暗黑武侠风） */
+        .work-card {
+            transition: all 0.4s ease;
+            background-color: rgba(36, 33, 30, 0.9);
+            border: 1px solid #442c1d !important;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(212, 56, 13, 0.2), 0 0 15px rgba(212, 56, 13, 0.1);
+            border-color: #d4380d !important;
+        }
+
+        .work-card img {
+            height: 280px;
+            object-fit: cover;
+            filter: contrast(1.1) brightness(0.9); /* 适配暗黑风格图片调整 */
+            border-bottom: 1px solid #442c1d;
+        }
+
+        .work-card .card-body {
+            padding: 25px;
+        }
+
+        .work-card .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        .work-card .card-text {
+            line-height: 1.8;
+            color: #e0d8c8;
+            margin-bottom: 15px;
+        }
+
+        .text-muted {
+            color: #9e8f7c !important;
+        }
+
+        /* 标签页样式（永劫无间风格） */
+        .category-tab {
+            margin-bottom: 40px;
+        }
+
+        .category-tab .nav-link {
+            color: #e0d8c8;
+            background-color: rgba(36, 33, 30, 0.8);
+            border: 1px solid #442c1d;
+            margin: 0 8px;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab .nav-link:hover {
+            border-color: #d4380d;
+            color: #d4380d;
+        }
+
+        .category-tab .nav-link.active {
+            background-color: #d4380d;
+            color: #f5f0e8;
+            border-color: #d4380d;
+            box-shadow: 0 0 10px rgba(212, 56, 13, 0.3);
+        }
+
+        /* 头部banner样式 */
+        .container-fluid.bg-light.py-5.mb-5 {
+            background-color: rgba(16, 14, 12, 0.9) !important;
+            border-bottom: 2px solid #442c1d;
+            margin-bottom: 60px !important;
+            padding: 60px 0 !important;
+        }
+
+        .display-5 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3.5rem !important;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(212, 56, 13, 0.5);
+        }
+
+        .lead {
+            color: #9e8f7c !important;
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+
+        /* 武学传承板块样式 */
+        .container.mb-5.bg-light.p-5.rounded.shadow-sm {
+            background-color: rgba(26, 24, 22, 0.9) !important;
+            border: 1px solid #442c1d;
+            border-radius: 8px;
+            padding: 50px !important;
+            margin-bottom: 80px !important;
+        }
+
+        .fs-5 {
+            font-size: 1.2rem !important;
+            line-height: 1.8;
+            color: #e0d8c8;
+        }
+
+        .list-unstyled li {
+            font-size: 1.1rem;
+            margin-bottom: 15px !important;
+        }
+
+        /* 按钮样式（永劫无间风格） */
+        .btn-danger {
+            background-color: #d4380d;
+            border-color: #d4380d;
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .btn-danger:hover {
+            background-color: #b92e08;
+            border-color: #b92e08;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 56, 13, 0.3);
+        }
+
+        /* 排版优化（匹配index.html） */
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin: 0 auto;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            .display-5 {
+                font-size: 2.5rem !important;
+            }
+            .work-card img {
+                height: 220px;
+            }
+            .container.mb-5.bg-light.p-5.rounded.shadow-sm {
+                padding: 30px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== 导航栏 ========== -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- ========== 八极拳展示核心内容 ========== -->
+    <!-- 头部banner -->
+    <div class="container-fluid bg-light py-5 mb-5">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold text-danger">八极拳 · 刚猛雄健</h1>
+            <p class="lead text-secondary">一拳一腿，尽显中华武学之魂</p>
+        </div>
+    </div>
+
+    <!-- 拳种分类标签 -->
+    <div class="container category-tab">
+        <ul class="nav nav-pills justify-content-center" id="workTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="classic-tab" data-bs-toggle="tab" data-bs-target="#classic"
+                    type="button" role="tab">经典套路</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="animal-tab" data-bs-toggle="tab" data-bs-target="#animal" type="button"
+                    role="tab">技击招式</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="culture-tab" data-bs-toggle="tab" data-bs-target="#culture" type="button"
+                    role="tab">传承脉络</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="modern-tab" data-bs-toggle="tab" data-bs-target="#modern" type="button"
+                    role="tab">现代发展</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 八极拳内容面板 -->
+    <div class="container mb-5">
+        <div class="tab-content" id="workTabContent">
+            <!-- 经典套路分类 -->
+            <div class="tab-pane fade show active" id="classic" role="tabpanel">
+                <h2 class="section-title text-center">经典套路</h2>
+                <div class="row g-4">
+                    <!-- 套路1 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="http://wsbjq.com/Article/UploadFiles/200793113747135.gif" class="card-img-top" alt="八极拳小架">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《八极小架》</h5>
+                                <p class="card-text">八极拳入门核心套路，动作简洁刚猛，注重桩功与基础发力，涵盖顶、抱、单、提等核心技法，是八极拳的根基所在。</p>
+                                <p class="text-muted small">特点：基础筑基 | 核心技法：顶肘、抱肘、提胯</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 套路2 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="http://wsbjq.com/Article/UploadFiles/200793113457185.gif" class="card-img-top" alt="八极拳大架">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《八极大架》</h5>
+                                <p class="card-text">小架的进阶拓展，动作大开大合，气势磅礴，融入六大开、八大招核心技法，强调“挨帮挤靠、崩撼突击”的八极精髓。</p>
+                                <p class="text-muted small">特点：刚猛雄浑 | 核心技法：六大开、八大招</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 套路3 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="http://wsbjq.com/Article/UploadFiles/20074816446156.jpg" class="card-img-top" alt="六大开">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《六大开》</h5>
+                                <p class="card-text">八极拳核心技击套路，包含开天、开地、开日、开月、开山、开门六大核心招式，每招皆具极强的实战杀伤力。</p>
+                                <p class="text-muted small">特点：实战核心 | 核心技法：撑、砸、闯、撩、顶、撞</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技击招式分类 -->
+            <div class="tab-pane fade" id="animal" role="tabpanel">
+                <h2 class="section-title text-center">技击招式</h2>
+                <div class="row g-4">
+                    <!-- 招式1 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c0f4e373b1250be836647291f2552a83?rik=3GJfDx%2blP99CHw&riu=http%3a%2f%2fpuui.qpic.cn%2fvpic_cover%2fb0896ik84c3%2fb0896ik84c3_hz.jpg%2f1280&ehk=EcvQDtiqaRAVr8qJXwuTtpolMlJ5BbIpaUnG0yfE5k8%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="贴山靠">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《贴山靠》</h5>
+                                <p class="card-text">八极拳标志性招式，又称“靠山背”，以身成拳，借助步法与腰胯发力，全身撞向对手，如泰山压顶，势不可挡。</p>
+                                <p class="text-muted small">发力特点：整劲爆发 | 应用场景：近身缠斗</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 招式2 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.673f46147c575847ec16226cd5c5a743?rik=Ww6cvEbLDrv3NQ&riu=http%3a%2f%2fpuui.qpic.cn%2fvpic_cover%2fa30663eapsg%2fa30663eapsg_hz.jpg%2f1280&ehk=60CphqkeATpXV%2bbPDwrJc%2bBLrQ2mm7F5UTQkGzd3Dm8%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="猛虎硬爬山">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《猛虎硬爬山》</h5>
+                                <p class="card-text">八极拳八大招之首，模仿猛虎扑食之势，手脚齐出，上打面门下扫胫，刚猛迅猛，兼具攻与防的双重特性。</p>
+                                <p class="text-muted small">发力特点：迅猛刚烈 | 应用场景：主动进攻</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 招式3 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://puui.qpic.cn/vpic_cover/z0506w0af3w/z0506w0af3w_hz.jpg/1280" class="card-img-top" alt="霸王折江">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《霸王折江》</h5>
+                                <p class="card-text">八极拳经典擒拿招式，主攻对手关节，借力打力，以巧劲制敌，刚中带柔，体现八极拳“刚柔并济”的武学思想。</p>
+                                <p class="text-muted small">发力特点：刚柔并济 | 应用场景：反制擒拿</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 传承脉络分类 -->
+            <div class="tab-pane fade" id="culture" role="tabpanel">
+                <h2 class="section-title text-center">传承脉络</h2>
+                <div class="row g-4">
+                    <!-- 传承1 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.Dod1-iaf0WrRdGqGaExKUQAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="吴钟创拳">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《吴钟创拳》</h5>
+                                <p class="card-text">清康熙年间，吴钟融合南北武学精髓，创立八极拳，初名“开门八极”，因“出手需开八极之地”而得名，奠定八极拳根基。</p>
+                                <p class="text-muted small">年代：清康熙年间 | 核心贡献：创立八极拳体系</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 传承2 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.iKsfAtX1Tcyeg4-bVC4TyQAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="李书文传艺">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《李书文传艺》</h5>
+                                <p class="card-text">八极拳第二代宗师李书文，人称“神枪李”，将八极拳与大枪技法融合，强化实战性，为八极拳扬名立下汗马功劳。</p>
+                                <p class="text-muted small">年代：清末民初 | 核心贡献：强化实战体系</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 传承3 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.ft-M9hp7BxMQ-P6zAmtC4QHaGU?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="霍殿阁护驾">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《霍殿阁护驾》</h5>
+                                <p class="card-text">李书文弟子霍殿阁，任清末末代皇帝溥仪的武术教师，将八极拳带入宫廷，极大提升了八极拳的知名度与传承高度。</p>
+                                <p class="text-muted small">年代：民国时期 | 核心贡献：提升拳种影响力</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 现代发展分类 -->
+            <div class="tab-pane fade" id="modern" role="tabpanel">
+                <h2 class="section-title text-center">现代发展</h2>
+                <div class="row g-4">
+                    <!-- 发展1 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://bpic.588ku.com/templet_pic/23/06/20/e1965c6ae35221eb8081c0be45b77c69.jpg!/fw/750/quality/90/unsharp/true/compress/true" class="card-img-top" alt="非遗认证">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《非遗认证》</h5>
+                                <p class="card-text">2008年，八极拳被列入国家级非物质文化遗产名录，官方认证其文化价值，为拳种的保护与传承提供了政策支持。</p>
+                                <p class="text-muted small">时间：2008年 | 级别：国家级非物质文化遗产</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 发展2 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://ts4.tc.mm.bing.net/th/id/OIP-C.biWui8uKa-syYahlS8kHfQHaD9?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="竞技化发展">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《竞技化发展》</h5>
+                                <p class="card-text">融入现代武术竞赛体系，保留八极拳核心技法的同时，优化动作编排与展示形式，成为武术锦标赛的重要竞赛项目。</p>
+                                <p class="text-muted small">方向：竞赛标准化 | 成果：纳入全运会项目</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 发展3 -->
+                    <div class="col-md-4">
+                        <div class="card work-card h-100 border-0">
+                            <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.0zOK46jMilwcEZsaNbb6bQHaEU?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="国际化传播">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">《国际化传播》</h5>
+                                <p class="card-text">通过海外武馆、文化交流等形式，八极拳已传播至全球30余个国家和地区，成为中华武学走向世界的重要名片。</p>
+                                <p class="text-muted small">范围：全球30+国家 | 形式：武馆教学、文化交流</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 武学传承定制/教学说明 -->
+    <div class="container mb-5 bg-light p-5 rounded shadow-sm">
+        <h2 class="section-title text-center">武学传承</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <p class="fs-5 mb-3">我们提供八极拳专业教学与传承服务，涵盖入门筑基、技击深造、非遗文化研学等多个方向，可根据您的需求定制专属学习方案。</p>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="text-danger">✓</i> 个性化教学定制（入门、进阶、实战）</li>
+                    <li class="mb-2"><i class="text-danger">✓</i> 非遗传承人亲授（八极拳正宗脉络）</li>
+                    <li class="mb-2"><i class="text-danger">✓</i> 青少年武学启蒙与体质提升</li>
+                    <li class="mb-2"><i class="text-danger">✓</i> 提供非遗文化研学证书</li>
+                </ul>
+            </div>
+            <div class="col-lg-4 text-center">
+                <a href="../index.html#contact" class="btn btn-danger btn-lg">联系学习</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../components/loadComponents.js"></script>
+</body>
+
+</html>

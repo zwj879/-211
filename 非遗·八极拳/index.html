@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八极拳非遗传承官网</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入字体：适配永劫无间国风书法感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局永劫无间风格重置 */
+        :root {
+            --yjwj-primary: #c41e3a; /* 永劫红 */
+            --yjwj-secondary: #2b2b2b; /* 暗黑底色 */
+            --yjwj-accent: #d4a56a; /* 鎏金点缀 */
+            --yjwj-text: #f5f5f5; /* 浅白文字 */
+            --yjwj-border: #44281d; /* 木纹边框 */
+            --yjwj-small-text: #d4a56a80; /* 小字统一色调（鎏金半透） */
+            --yjwj-small-text-hover: #d4a56a; /* 小字hover色调 */
+        }
+        body {
+            background-color: var(--yjwj-secondary);
+            color: var(--yjwj-text);
+            font-family: 'Noto Sans SC', sans-serif;
+            background-image: url('https://so1.360tres.com/t01d0df6cced9f9a493.png'); /* 古风暗纹背景 */
+            background-attachment: fixed;
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+        /* 标题书法字体 */
+        h1, h2, h3, h4, .card-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: var(--yjwj-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        /* 统一小字样式（核心修改） */
+        .card-subtitle, .text-secondary-emphasis, .small-text, 
+        .form-text, .carousel-caption p, .card-text small,
+        .msgBox-tip, .contact-tip, .reserve-tip {
+            color: var(--yjwj-small-text) !important;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        .card-subtitle:hover, .text-secondary-emphasis:hover {
+            color: var(--yjwj-small-text-hover) !important;
+            transition: color 0.3s ease;
+        }
+        /* 导航栏/页脚占位符样式 */
+        #navbar-placeholder, #footer-placeholder {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 2px solid var(--yjwj-border);
+        }
+        /* 轮播图改造 - 核心尺寸调整 */
+        .carousel {
+            border: 3px solid var(--yjwj-border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(196, 30, 58, 0.3);
+            margin: 1rem auto;
+            max-width: 1200px; /* 限制轮播图最大宽度（可自行调整） */
+            max-height: 600px; /* 限制轮播图最大高度（可自行调整） */
+            width: 95%;
+        }
+        /* 轮播图图片尺寸控制 */
+        .carousel-item img {
+            width: 100%;
+            height: 500px; /* 固定轮播图高度（可自行调整） */
+            object-fit: cover; /* 保持图片比例，裁剪多余部分 */
+        }
+        .carousel-caption {
+            background-color: rgba(0,0,0,0.7);
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--yjwj-primary);
+        }
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #999;
+            border: 2px solid var(--yjwj-secondary);
+        }
+        .carousel-indicators .active {
+            background-color: var(--yjwj-primary);
+        }
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+        /* 卡片风格改造（核心） */
+        .card {
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 2px solid var(--yjwj-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(212, 165, 106, 0.4);
+            border-color: var(--yjwj-accent);
+        }
+        .card-img-top {
+            border-bottom: 2px solid var(--yjwj-border);
+            filter: contrast(1.1) brightness(0.9);
+        }
+        /* 按钮风格改造 */
+        .btn-outline-primary {
+            color: var(--yjwj-accent);
+            border-color: var(--yjwj-accent);
+        }
+        .btn-outline-primary:hover {
+            background-color: var(--yjwj-accent);
+            color: var(--yjwj-secondary);
+            border-color: var(--yjwj-accent);
+        }
+        .btn-primary {
+            background-color: var(--yjwj-primary);
+            border-color: var(--yjwj-primary);
+        }
+        .btn-primary:hover {
+            background-color: #a0182e;
+            border-color: #a0182e;
+        }
+        .btn-success {
+            background-color: #8a9a5b;
+            border-color: #8a9a5b;
+        }
+        .btn-success:hover {
+            background-color: #728049;
+            border-color: #728049;
+        }
+        .btn-outline-secondary {
+            color: #ccc;
+            border-color: #555;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #555;
+            color: #fff;
+            border-color: #555;
+        }
+        /* 表单元素改造 */
+        .form-control, .form-select {
+            background-color: rgba(40, 40, 40, 0.8);
+            border: 1px solid var(--yjwj-border);
+            color: var(--yjwj-text);
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(50, 50, 50, 0.9);
+            border-color: var(--yjwj-accent);
+            box-shadow: 0 0 8px rgba(212, 165, 106, 0.3);
+            color: var(--yjwj-text);
+        }
+        .form-label {
+            color: var(--yjwj-accent);
+            font-weight: 600;
+        }
+        /* 排版优化 */
+        .container {
+            max-width: 1200px;
+            padding: 0 1.5rem;
+        }
+        .my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important;
+        }
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+        .mb-3 {
+            margin-bottom: 1.2rem !important;
+        }
+        #work-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        #work-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--yjwj-primary);
+            margin: 0.5rem auto;
+        }
+        /* 消息提示区优化 */
+        #msgBox {
+            color: var(--yjwj-accent);
+            padding: 1rem 0;
+            background-color: rgba(0,0,0,0.5);
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            #work-title {
+                font-size: 2rem;
+            }
+            .carousel-caption h3 {
+                font-size: 1.2rem;
+            }
+            .carousel-caption p {
+                font-size: 0.85rem;
+            }
+            .card-title {
+                font-size: 1.2rem;
+            }
+            .card-subtitle, .text-secondary-emphasis {
+                font-size: 0.8rem;
+            }
+            /* 移动端轮播图尺寸适配 */
+            .carousel {
+                max-height: 300px;
+            }
+            .carousel-item img {
+                height: 280px;
+            }
+        }
+        
+        /* 平板端适配（可选） */
+        @media (min-width: 769px) and (max-width: 992px) {
+            .carousel {
+                max-height: 400px;
+            }
+            .carousel-item img {
+                height: 380px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/validate.css">
+</head>
+<body>
+    <!-- ========== 导航栏 ========== -->
+    <div id="navbar-placeholder"></div>
+    <!-- ========== 轮播图 ========== -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- 小圆点 -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <!-- 图片区 -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c2c37578f37744f1926368b570fb09d6?rik=wb3A7KreQL3qOw&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20171024%2f97ca09cdf2074f438d93f07db5211993.jpeg&ehk=Z6W5a26Qeuk9d%2fSxlxM9uwOKG3oDzDXREtwZ2w8I9JM%3d&risl=&pid=ImgRaw&r=0" class="d-block w-100" alt="八极拳风采">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>百年八极，武韵传承</h3>
+                    <p>国家级非物质文化遗产传统武术 | 冀派武学核心代表</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://ts1.tc.mm.bing.net/th/id/R-C.9e9ae64b2da4d857b24a9a1fc172d239?rik=u%2bgOR89OV6i6DA&riu=http%3a%2f%2fkingkungfu.com%2fUpload%2fimage%2f20180108%2f20180108142022_2413.jpg&ehk=rM9d9wMzWDyrabSiWU3%2bwUPRQpatP1YIiD9ZPV1uXKc%3d&risl=&pid=ImgRaw&r=0" class="d-block w-100" alt="传统武术传承">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>文武兼修，弘扬国粹</h3>
+                    <p>一招一式承古法，一拳一势守初心 | 非遗活态传承实践</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c02b637fe2360a6e6a100997d3efdcb6?rik=EjNK8qhv4MMdDg&riu=http%3a%2f%2fwww.kingkungfu.com%2fUpload%2fimage%2f20180108%2f20180108141850_0747.jpg&ehk=7%2bF6ZdGzWBY3GE%2bDpc%2fRRSTyfDfROIoyGRRSf%2fR1aTk%3d&risl=&pid=ImgRaw&r=0" class="d-block w-100" alt="八极拳传承人">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>择一事，终一生</h3>
+                    <p>致敬坚守传统武学的八极拳非遗传承人 | 薪火相传三百年</p>
+                </div>
+            </div>
+        </div>
+        <!-- 左右箭头 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- ========== 作品展示 卡片模块 开始 ========== -->
+    <div class="container my-5">
+        <!-- 模块标题 -->
+        <h2 id="work-title" class="text-center mb-4">八极拳经典招式</h2>
+        <!-- 栅格行：所有卡片都放在这个 .row 里 -->
+        <div class="row g-4">
+            <!-- 第 1 张卡片 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="http://wsbjq.com/Article/UploadFiles/20074816446156.jpg" class="card-img-top" alt="八极拳六大开">
+                    <div class="card-body">
+                        <h5 class="card-title">核心母劲 · 六大开</h5>
+                        <p class="card-text">六大开是八极拳劲力核心，包含顶、抱、单、提、挎、缠六种基础劲力，是所有招式的根基，发力浑厚、穿透力强，尽显八极刚猛本色。</p>
+                        <p class="small-text">「八极拳母式 · 劲力总纲」</p>
+                        <a href="#" class="btn btn-outline-primary">了解更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 第 2 张卡片 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="http://wsbjq.com/Article/UploadFiles/200793113747135.gif" class="card-img-top" alt="八极小架">
+                    <div class="card-body">
+                        <h5 class="card-title">筑基套路 · 八极小架</h5>
+                        <p class="card-text">八极小架紧凑严密、贴身近打，主打寸劲短打，动作小巧精悍、无多余花架，是初学者夯实桩功、规范发力的必修基础套路。</p>
+                        <p class="small-text">「入门必修 · 桩功筑基」</p>
+                        <a href="#" class="btn btn-outline-primary">了解更多</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 第 3 张卡片 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="http://wsbjq.com/Article/UploadFiles/200793113457185.gif" class="card-img-top" alt="八极大架">
+                    <div class="card-body">
+                        <h5 class="card-title">实战套路 · 八极大架</h5>
+                        <p class="card-text">八极大架大开大合、气势雄浑，招式舒展霸道，主打远攻重击、贴身强攻，完整展现八极拳“刚猛暴烈、实战至上”的拳法特色。</p>
+                        <p class="small-text">「进阶实战 · 刚猛尽显」</p>
+                        <a href="#" class="btn btn-outline-primary">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <p id="msgBox" class="msgBox-tip" style="text-align: center; min-height: 24px;">
+        消息显示区：提交预约/留言后将展示反馈信息
+    </p>
+    <!-- ========== 传承人风采 卡片模块 开始 ========== -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">八极拳非遗传承人</h2>
+        <div class="row g-4">
+            <!-- 第 1 位传承人 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.zPGKoa2Fg8Bh2aOr2gW8aQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="吴连枝">
+                    <div class="card-body">
+                        <h5 class="card-title">吴连枝</h5>
+                        <h6 class="card-subtitle mb-2">国家级非遗代表性传承人</h6>
+                        <p class="card-text">吴氏八极拳嫡系传人，深耕八极拳传承数十年，致力于传统拳法规范化教学，推动八极拳走向全国、走向世界。</p>
+                        <a href="#" class="card-link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 第 2 位传承人 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c7261825414be48225bd441354991b5e?rik=RCr1x6jzUWgcPA&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn12%2f473%2fw544h729%2f20180407%2f738e-fyvtmxc3995795.jpg&ehk=T4I%2f5%2bYkliseRh1b5adYY9STmsQORNjWIM79EnbvAlA%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="强瑞清">
+                    <div class="card-body">
+                        <h5 class="card-title">强瑞清</h5>
+                        <h6 class="card-subtitle mb-2">八极拳知名传承大师</h6>
+                        <p class="card-text">深耕民间武术传承，坚守传统八极拳古法套路，擅长实战技法教学，培养了大批优秀武术传承人才。</p>
+                        <a href="#" class="card-link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 第 3 位传承人 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="http://wsbjq.com/Article/UploadFiles/20065410324175.jpg" class="card-img-top" alt="冯景山">
+                    <div class="card-body">
+                        <h5 class="card-title">冯景山</h5>
+                        <h6 class="card-subtitle mb-2">非遗武术推广者</h6>
+                        <p class="card-text">专注八极拳校园普及与公益推广，创新教学模式，让传统武学适配现代健身、修身需求，助力非遗年轻化传承。</p>
+                        <a href="#" class="card-link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========== 传承人风采 卡片模块 结束 ========== -->
+    <div class="container mb-4">
+        <div class="card shadow-sm border-0">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-7 p-4 p-lg-5">
+                    <h2 class="mb-3">关于八极拳</h2>
+                    <p class="text-secondary-emphasis mb-3">国家级非物质文化遗产 · 中华传统实战名拳 | 2008年列入非遗名录</p>
+                    <p>八极拳是中国经典传统短打拳术，起源于河北沧州，距今已有三百余年传承历史，是北方武术代表性拳种，素有“文有太极安天下，武有八极定乾坤”的美誉。</p>
+                    <p>拳法主打贴身近打、刚猛爆发，招式简洁实用、无花哨动作，以桩功扎实、整劲浑厚、攻防一体为核心特色，兼具防身、健身、修身三重价值。</p>
+                    <p>2008年，八极拳正式列入第二批国家级非物质文化遗产代表性项目名录，成为中华武学文化的重要瑰宝。</p>
+                    <a href="#" class="btn btn-primary mt-3 px-4">查看完整非遗档案</a>
+                </div>
+                <div class="col-lg-5 text-center p-4 p-lg-5">
+                    <img src="https://ts4.tc.mm.bing.net/th/id/OIP-C.2cYwe-AGH_ZyO5rYWWwXswHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="八极拳演练" class="rounded-circle shadow-sm"
+                        style="width: 260px; height: 260px; object-fit: cover;">
+                    <p class="small-text mt-3">八极拳 · 传统实战武学 | 刚猛暴烈 · 寸劲短打</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p id="msgBox" class="msgBox-tip" style="text-align: center; min-height: 24px;">
+        消息显示区：提交预约/留言后将展示反馈信息
+    </p>
+    <!-- 预约模块 -->
+    <div class="container my-5">
+        <h2 class="text-center mb-5">了解我们</h2>
+            <div class="row g-4">
+                <!-- 左侧 快速预约的卡片 -->
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm">
+                        <h4 class="card-title mb-4 text-center">武学体验预约</h4>
+                        <form>
+                            <!-- 姓名 + 电话 并排 -->
+                            <div class="row g-3">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">姓名</label>
+                                    <input type="text" class="form-control" placeholder="请输入您的姓名">
+                                    <div class="form-text">请填写真实姓名，便于核验预约信息</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">联系电话</label>
+                                    <input type="tel" class="form-control" placeholder="请输入手机号码">
+                                    <div class="form-text">仅用于预约联系，严格保密不对外泄露</div>
+                                </div>
+                            </div>
+                            <!-- 预约日期 -->
+                            <div class="mb-3">
+                                <label class="form-label">预约日期</label>
+                                <input type="date" class="form-control">
+                                <div class="form-text">建议提前3天预约，便于安排教学师傅</div>
+                            </div>
+                            <!-- 体验项目下拉选择 -->
+                            <div class="mb-3">
+                                <label class="form-label">体验项目</label>
+                                <select class="form-select">
+                                    <option selected>请选择体验项目</option>
+                                    <option value="1">八极拳基础桩功体验</option>
+                                    <option value="2">小架基础招式教学</option>
+                                    <option value="3">传统武术攻防实战体验</option>
+                                </select>
+                                <div class="form-text">零基础可选择「基础桩功体验」</div>
+                            </div>
+                            <!-- 按钮组 -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">立即预约</button>
+                                <button type="reset" class="btn btn-outline-secondary">重新填写</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- 右侧：联系我们卡片 -->
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm">
+                        <h4 class="card-title mb-4 text-center">联系我们</h4>
+                        <form>
+                            <!-- 姓名 + 电话 并排 -->
+                            <div class="row g-3">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">姓名</label>
+                                    <input type="text" class="form-control" placeholder="您的姓名">
+                                    <div class="form-text">请填写真实姓名，便于回复沟通</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">电话</label>
+                                    <input type="tel" class="form-control" placeholder="手机号码" id="rPhone">
+                                    <div class="text-danger" id="phoneTiShi"></div>
+                                    <div class="form-text">仅用于留言回复，严格保密不对外泄露</div>
+                                </div>
+                            </div>
+                            <!-- 邮箱 -->
+                            <div class="mb-3">
+                                <label class="form-label">邮箱地址</label>
+                                <input type="email" class="form-control" placeholder="name@example.com">
+                                <div class="form-text">建议填写常用邮箱，便于接收详细资料</div>
+                            </div>
+                            <!-- 留言 -->
+                            <div class="mb-3">
+                                <label class="form-label">武学交流留言</label>
+                                <textarea class="form-control" rows="3" placeholder="请输入你的习武感悟、学习疑问或合作留言..."></textarea>
+                                <div class="form-text">非紧急问题将在1-2个工作日内回复</div>
+                            </div>
+                            <!-- 按钮组 -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-success">发送留言</button>
+                                <button type="reset" class="btn btn-outline-secondary">重新填写</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- 页脚部分 -->
+    <div id="footer-placeholder"></div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./components/loadComponents.js"></script>
+    <script src="js/validate.js"></script>
+    <script>
+       
+    </script>
+</body>
+</html>

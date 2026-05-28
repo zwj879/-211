@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八极拳·非遗传承人</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 以 about.html 为例，在页面主体容器添加style -->
+<div class="container" style="padding-top: 70px;">
+  <!-- 关于我们的页面内容 -->
+</div>
+    <style>
+        /* 永劫无间风格核心样式（匹配about.html字体/颜色 + 暗黑武侠风） */
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        
+        /* 全局样式重置 */
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #0f0d16; /* 永劫无间暗黑底色 */
+            color: #f8f5e6; /* 主文字浅米白 */
+        }
+        
+        /* 核心色彩体系（匹配about.html） */
+        .text-danger, .text-pink, 
+        .inheritor-body .card-title,
+        .section-title::after,
+        .nav-pills .nav-link.active,
+        .btn-outline-pink:hover,
+        .btn-outline-pink {
+            color: #e63948 !important; /* 永劫无间红（替换原棕红） */
+        }
+        
+        .bg-light-custom {
+            background-color: #1a1625; /* 暗黑浅背景，贴合永劫武侠风 */
+        }
+        
+        .bg-white {
+            background-color: #1f1b2e !important; /* 卡片底色替换为暗黑系 */
+        }
+        
+        .border {
+            border-color: #3a354b !important; /* 边框色适配暗黑 */
+        }
+        
+        /* 字体体系（匹配about.html） */
+        h1, h2, h3, h4, h5, h6, .section-title {
+            font-family: 'Ma Shan Zheng', cursive; /* 毛笔字体适配武侠风 */
+        }
+        
+        /* 自定义样式 - 永劫无间武侠风优化 */
+        .section-title {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 45px;
+            text-align: center;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background-color: #e63948;
+            box-shadow: 0 0 10px rgba(230, 57, 72, 0.6); /* 永劫红辉光效果 */
+        }
+        
+        /* 传承人卡片悬停效果（强化永劫武侠交互感） */
+        .inheritor-card {
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 1px solid #3a354b !important;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #1f1b2e;
+        }
+        
+        .inheritor-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(230, 57, 72, 0.3);
+            border-color: #e63948 !important;
+        }
+        
+        .inheritor-card img {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+            border-bottom: 2px solid #e63948; /* 图片底部红边装饰 */
+        }
+        
+        .inheritor-body {
+            padding: 25px;
+        }
+        
+        .inheritor-body .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .inheritor-body .card-subtitle {
+            color: #b8b5c0; /* 副标题浅灰紫 */
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+        
+        .card-text.text-muted {
+            color: #d0cde1 !important; /* 正文浅灰，提升可读性 */
+            line-height: 1.8;
+        }
+        
+        /* Tab 导航栏样式（永劫风格优化） */
+        .nav-pills .nav-link {
+            color: #d0cde1;
+            border: 1px solid #3a354b;
+            border-radius: 8px;
+            margin: 0 8px;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            background-color: #1f1b2e;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-pills .nav-link:hover {
+            border-color: #e63948;
+            color: #e63948;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: #e63948;
+            color: #fff !important;
+            border-color: #e63948;
+            box-shadow: 0 0 8px rgba(230, 57, 72, 0.5);
+        }
+        
+        /* 详情按钮（永劫风格强化） */
+        .btn-outline-pink {
+            border-color: #e63948;
+            color: #e63948;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-pink:hover {
+            background-color: #e63948;
+            color: #fff !important;
+            box-shadow: 0 0 10px rgba(230, 57, 72, 0.6);
+        }
+        
+        /* 排版优化（对齐index.html） */
+        .container {
+            max-width: 1200px;
+        }
+        
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        
+        .col-md-6, .col-lg-4 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .py-5 {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+        }
+        
+        .mb-5 {
+            margin-bottom: 3rem !important;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1.8rem !important;
+        }
+        
+        .p-4 {
+            padding: 2rem !important;
+        }
+        
+        .fs-5 {
+            font-size: 1.15rem !important;
+            line-height: 1.8;
+        }
+    </style>
+    <link rel="stylesheet" href="css/inheritor.css">
+</head>
+<body>
+    <!-- ========== 导航栏占位符 ========== -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- ========== 头部 Banner ========== -->
+    <div class="container-fluid bg-light-custom py-5 mb-5">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold text-danger">非遗传承人 · 拳守八方</h1>
+            <p class="lead text-secondary">一拳一势，刚猛精进，致敬八极拳守艺人</p>
+        </div>
+    </div>
+
+    <!-- ========== 主体内容容器 ========== -->
+    <div class="container mb-5">
+        <!-- 1. 页面介绍 -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="p-4 bg-white border rounded shadow-sm">
+                    <h2 class="section-title">关于传承人</h2>
+                    <p class="fs-5 text-muted">
+                        八极拳的三百余年传承，离不开一代代拳师的坚守与付出。他们以拳立身，以武弘道，不仅继承了古老的拳法技艺，更在新时代赋予了八极拳新的生命力。
+                    </p>
+                    <p class="mb-0">
+                        我们将传承人分为“国家级”与“省级/市级”两个梯队，展示他们的武学成就与传承贡献，让更多人了解这些幕后英雄。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 传承人分类 Tab 导航 -->
+        <ul class="nav nav-pills justify-content-center mb-4" id="inheritorTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="national-tab" data-bs-toggle="tab" data-bs-target="#national" type="button" role="tab">
+                    国家级传承人
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="provincial-tab" data-bs-toggle="tab" data-bs-target="#provincial" type="button" role="tab">
+                    省/市级传承人
+                </button>
+            </li>
+        </ul>
+
+        <!-- 3. 传承人内容面板 -->
+        <div class="tab-content" id="inheritorTabContent">
+            <!-- ========== 国家级传承人 ========== -->
+            <div class="tab-pane fade show active" id="national" role="tabpanel">
+                <h2 class="section-title text-center mb-4">国家级非物质文化遗产代表性传承人</h2>
+                <div class="row g-4">
+                    <!-- 传承人 1: 吴连枝 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card inheritor-card">
+                            <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.zPGKoa2Fg8Bh2aOr2gW8aQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="吴连枝">
+                            <div class="inheritor-body">
+                                <h5 class="card-title">吴连枝</h5>
+                                <h6 class="card-subtitle">中国武术八段</h6>
+                                <p class="card-text text-muted">
+                                    首批国家级非物质文化遗产项目八极拳代表性传承人。从事八极拳传承教学七十余年，技艺精湛，对八极拳的技法整理与理论研究做出了巨大贡献。
+                                </p>
+                                <a href="#" class="btn btn-outline-pink btn-sm">查看详细履历 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 传承人 2: 王世泉 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card inheritor-card">
+                            <img src="https://ts4.tc.mm.bing.net/th/id/OIP-C.WnKvbZ3DUx838788Fs6T_QAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="王世泉">
+                            <div class="inheritor-body">
+                                <h5 class="card-title">王世泉</h5>
+                                <h6 class="card-subtitle">国家级非遗传承人</h6>
+                                <p class="card-text text-muted">
+                                    八极拳“世”字辈代表人物，擅长八极拳核心技法“六大开、八大招”，其教学体系严谨，弟子遍布海内外，将八极拳的刚猛与实用推向了新的高度。
+                                </p>
+                                <a href="#" class="btn btn-outline-pink btn-sm">查看详细履历 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 传承人 3: 李俊义 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card inheritor-card">
+                            <img src="https://gtt.dlnu.edu.cn/__local/8/E1/9A/EF21A89671E93A7996341DCCD62_C38C9A02_E6E5.jpg" class="card-img-top" alt="李俊义">
+                            <div class="inheritor-body">
+                                <h5 class="card-title">李俊义</h5>
+                                <h6 class="card-subtitle">国家级非遗传承人</h6>
+                                <p class="card-text text-muted">
+                                    致力于八极拳的创新与发展，将现代体育训练理念融入八极拳教学中。他的教学打破了传统师徒传承的限制，赋予古老拳法现代教学表达。
+                                </p>
+                                <a href="#" class="btn btn-outline-pink btn-sm">查看详细履历 →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 省/市级传承人 ========== -->
+            <div class="tab-pane fade" id="provincial" role="tabpanel">
+                <h2 class="section-title text-center mb-4">省级/地市级非物质文化遗产代表性传承人</h2>
+                <div class="row g-4">
+                    <!-- 传承人 4: 李树栋 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card inheritor-card">
+                            <img src="https://so1.360tres.com/t0169ca364332eb41d7.jpg" class="card-img-top" alt="李树栋">
+                            <div class="inheritor-body">
+                                <h5 class="card-title">李树栋</h5>
+                                <h6 class="card-subtitle">吉林省级非遗传承人</h6>
+                                <p class="card-text text-muted">
+                                    专注于八极拳传统套路的复刻与保护，对清代八极拳古谱的技法还原有着极深的造诣，是八极拳“守正”的坚定践行者。
+                                </p>
+                                <a href="#" class="btn btn-outline-pink btn-sm">查看详细履历 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 传承人 5: 赵福祥 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card inheritor-card">
+                            <img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.ha_zCZjok6hWFsXWLSMcIAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="赵福祥">
+                            <div class="inheritor-body">
+                                <h5 class="card-title">赵福祥</h5>
+                                <h6 class="card-subtitle">河北省级非遗传承人</h6>
+                                <p class="card-text text-muted">
+                                    擅长八极拳实战技法传承，其教学风格注重攻防结合，技法刚猛简洁，尤其在“贴山靠”“顶肘”等核心技法的传授上独树一帜。
+                                </p>
+                                <a href="#" class="btn btn-outline-pink btn-sm">查看详细履历 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 传承人 6: 陈培吉 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card inheritor-card">
+                            <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.DxmokHdzXMemzZZt6Pse3AHaOG?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="陈培吉">
+                            <div class="inheritor-body">
+                                <h5 class="card-title">陈培吉</h5>
+                                <h6 class="card-subtitle">天津市级非遗传承人</h6>
+                                <p class="card-text text-muted">
+                                    积极推动八极拳进校园、进社区活动，致力于培养年轻一代的八极拳爱好者。其教学融合现代教育理念，富有时代气息。
+                                </p>
+                                <a href="#" class="btn btn-outline-pink btn-sm">查看详细履历 →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 页脚占位符 ========== -->
+    <div id="footer-placeholder"></div>
+
+    <!-- ========== JS 依赖 ========== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../components/loadComponents.js"></script>
+    
+    <script>
+        document.querySelectorAll('.btn-outline-pink').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const name = this.closest('.inheritor-body').querySelector('.card-title').textContent;
+                alert(`正在加载 ${name} 的详细履历...`);
+            });
+        });
+    </script>
+</body>
+</html>
